@@ -22,9 +22,12 @@ const Home: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchUsers() {
+      setIsLoading(true);
+
       const response = await fetch(`https://reqres.in/api/users?page=${page}`);
       const data: FetchResponse = await response.json();
 
@@ -35,6 +38,8 @@ const Home: React.FC = () => {
           );
           return [...prevUsers, ...newUsers];
         });
+        setIsLoading(false);
+
         if (data.page >= data.total_pages) {
           setHasMore(false);
         }
@@ -46,20 +51,28 @@ const Home: React.FC = () => {
 
   return (
     <div className="wrapper">
-      <div className="users-list">
-        {users.map(user => (
-          <UserItem key={user.id} user={user} />
-        ))}
-      </div>
-      <div className="button-container">
-        {hasMore ? (
-          <button className="oswald btn_load" onClick={() => setPage(prevPage => prevPage + 1)}>
-            Load more
-          </button>
-        ) : (
-          <button disabled className="oswald btn_load">No more items</button>
-        )}
-      </div>
+      {isLoading ? (
+        <div className="spinner_container">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <>
+          <div className="users-list">
+            {users.map(user => (
+              <UserItem key={user.id} user={user} />
+            ))}
+          </div>
+          <div className="button-container">
+            {hasMore ? (
+              <button className="oswald btn_load" onClick={() => setPage(prevPage => prevPage + 1)}>
+                Load more
+              </button>
+            ) : (
+              <button disabled className="oswald btn_load">No more items</button>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
