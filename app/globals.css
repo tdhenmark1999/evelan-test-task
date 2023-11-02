@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.users-list>div {
+  width: 150px;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+button:disabled {
+  background-color: #ADD5D5;
+  cursor: not-allowed;
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.oswald {
+  font-family: 'Oswald', sans-serif;
+
+}
+
+.txt_email {
+  font-size: 14px;
+}
+
+.avatar {
+  margin-bottom: 10px;
+}
+
+.btn_load {
+  cursor: pointer;
+  background-color: #319795;
+  color: white;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
